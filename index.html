@@ -216,7 +216,7 @@
       <div class="row align-items-center flex-row-reverse">
         <div class="col-lg-6">
           <div class="about-image-wrapper">
-            <img src="img/eldeco-about.webp" alt="Overview Image">
+            <img src="img/s2nimg.jpg" alt="Overview Image">
           </div>
         </div>
         <div class="col-lg-6">
@@ -300,7 +300,7 @@
         <div class="col-lg-6 order-lg-2">
           <div class="features-image-wrapper">
             <div class="image-overlay-effect"></div>
-            <img src="img/eldeco-g-7.webp" alt="Project Features" class="features-image">
+            <img src="img/s3nimg.jpg" alt="Project Features" class="features-image">
             <div class="image-border-accent"></div>
           </div>
         </div>
@@ -683,17 +683,6 @@
               <p class="footer-text">
                 With over four decades of expertise, Eldeco has been a pioneer in North India's real estate landscape, known for its residential projects in Noida, Greater Noida and other cities. Having successfully delivered 200+ projects across 20+ cities, Eldeco has served over 30000+ satisfied homeowners, and developed 60+ million sq.ft.
               </p>
-              
-              <div class="footer-rera">
-                <div class="rera-item">
-                  <span class="rera-label">Agent RERA:</span>
-                  <span class="rera-number">DLRERA2025A0081</span>
-                </div>
-                <div class="rera-item">
-                  <span class="rera-label">Project RERA:</span>
-                  <span class="rera-number">DLRERA2026P0002</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -739,7 +728,7 @@
           <p class="copyright-text">
             <a href="#" class="footer-link">Privacy Policy</a>
             <span class="separator">|</span>
-            Digital Media Planned By <a href="https://www.umikoweb.com/" class="footer-link" target="_blank">Ritz Media World</a>
+            Digital Media Planned By <a href="https://ritzmediaworld.com" class="footer-link" target="_blank">Ritz Media World</a>
           </p>
         </div>
       </div>
@@ -858,24 +847,7 @@
 
 
 
-  <!-- Mobile Bottom Bar -->
-  <div class="mobile-bottom-bar">
-    <a href="tel:+918920100741" class="mobile-action-btn mobile-call-btn">
-      <i class="fa-solid fa-phone"></i>
-      <span>Call</span>
-    </a>
 
-    <a href="https://api.whatsapp.com/send?phone=+918920100741&text=Hello, Eldeco Camelot Dwarka delhi Get in touch with me my name is"
-      target="_blank" class="mobile-action-btn mobile-whatsapp-btn">
-      <i class="fa-brands fa-whatsapp"></i>
-      <span>WhatsApp</span>
-    </a>
-
-    <button class="mobile-action-btn mobile-contact-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
-      <i class="fa-solid fa-envelope"></i>
-      <span>Contact</span>
-    </button>
-  </div>
 
   <!-- Contact Modal -->
   <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
@@ -985,65 +957,177 @@
 
 
   <script>
-   document.querySelectorAll('.form1-submit-btn').forEach(button => {
-    button.addEventListener('click', async function () {
-        const form = this.closest('.form1');
-        const submitBtn = this;
+    // Google Sheets Script URL
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzPGcu-_n28K8ZrRudpWfoZJ6a2F2EtvDq_Vlnin9RCTfw_A6lx986V-66fE-VyVRDZ7A/exec';
+    const SHEET_NAME = 'Sheet1';
 
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = "Please wait...";
-        submitBtn.disabled = true;
-
-        const name = form.querySelector('[name="FIRSTNAME"]').value.trim();
-        const email = form.querySelector('[name="EMAIL"]').value.trim();
-        const phone = form.querySelector('[name="PHONE"]').value.trim();
-        const project = form.querySelector('[name="PROJECT"]').value.trim();
-        const location = form.querySelector('[name="LOCATION"]').value.trim();
-        const client = form.querySelector('[name="CLIENT"]').value.trim();
-
-        if (!name || !email || !phone) {
-            alert("All fields are required!");
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            return;
-        }
-
-        const crmPayload = {
-            "fields": { "name": name, "phone": phone, "email": email, "project name": project, "location": location },
-            actions: [{ type: "SYSTEM_NOTE", text: "Lead Source: Website Form" }]
-        };
-
-        const crmApiUrl = "https://api.telecrm.in/enterprise/67e39d67bf15112a90c6eb91/autoupdatelead";
-        const bearerToken = "84f9501b-6336-4fc1-bd29-cb1b7ed74b7c1743056806632:b2d87a1c-85bc-4658-8c08-6bed7124c934";
-
+    // Function to submit data to Google Sheets
+    async function submitToGoogleSheets(formData, formType = 'contact') {
         try {
-            const crmRes = await fetch(crmApiUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${bearerToken}`
-                },
-                body: JSON.stringify(crmPayload)
-            });
-            if (!crmRes.ok) throw new Error("CRM API failed");
+            // Get form values from FormData
+            const name = formData.get('FIRSTNAME') || '';
+            const email = formData.get('EMAIL') || '';
+            const phone = formData.get('PHONE') || '';
+            const message = formData.get('USER_MESSAGE') || 'Eldeco Camelot Enquiry';
 
-            const emailRes = await fetch("contact_mail.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, phone, project, location, client })
-            });
-            if (!emailRes.ok) throw new Error("Email failed");
+            // Prepare data for Google Sheets
+            const data = {
+                sheetName: SHEET_NAME,
+                Name: name,
+                Email: email,
+                Phone: phone,
+                Message: message
+            };
 
-            window.location.href = "thanks.html";
-        } catch (err) {
-            console.error(err);
-            alert("Something went wrong. Try again.");
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
+            // Create form data
+            const formDataToSend = new FormData();
+            Object.keys(data).forEach(key => {
+                formDataToSend.append(key, data[key]);
+            });
+
+            // Submit to Google Sheets
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formDataToSend
+            });
+
+            const result = await response.json();
+            
+            if (result.result === 'success') {
+                return { success: true, message: 'Form submitted successfully!' };
+            } else {
+                throw new Error(result.error?.message || 'Failed to submit form');
+            }
+        } catch (error) {
+            console.error('Error submitting to Google Sheets:', error);
+            return { success: false, message: error.message || 'Failed to submit form. Please try again.' };
         }
+    }
+
+    // Handle contact form submission (form1 - hero forms)
+    document.querySelectorAll('.form1').forEach(formElement => {
+        formElement.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const submitBtn = formElement.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Set default message if empty
+                const messageField = formElement.querySelector('[name="USER_MESSAGE"]');
+                if (messageField && !messageField.value.trim()) {
+                    messageField.value = 'Eldeco Camelot Enquiry';
+                }
+
+                const formData = new FormData(formElement);
+                const result = await submitToGoogleSheets(formData, 'contact');
+
+                if (result.success) {
+                    // Store current URL in sessionStorage for redirect back
+                    sessionStorage.setItem('previousUrl', window.location.href);
+                    // Redirect to thank you page
+                    window.location.href = 'thankyou.html';
+                } else {
+                    alert('Error: ' + result.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
     });
-});
+
+    // Handle footer form submission
+    document.querySelectorAll('.footer-form').forEach(formElement => {
+        formElement.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const submitBtn = formElement.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Set default message if empty
+                const messageField = formElement.querySelector('[name="USER_MESSAGE"]');
+                if (messageField && !messageField.value.trim()) {
+                    messageField.value = 'Eldeco Camelot Enquiry';
+                }
+
+                const formData = new FormData(formElement);
+                const result = await submitToGoogleSheets(formData, 'footer');
+
+                if (result.success) {
+                    // Store current URL in sessionStorage for redirect back
+                    sessionStorage.setItem('previousUrl', window.location.href);
+                    // Redirect to thank you page
+                    window.location.href = 'thankyou.html';
+                } else {
+                    alert('Error: ' + result.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+    });
+
+    // Handle modal form submission
+    document.querySelectorAll('.contact-modal-form').forEach(formElement => {
+        formElement.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const submitBtn = formElement.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Set default message if empty
+                const messageField = formElement.querySelector('[name="USER_MESSAGE"]');
+                if (messageField && !messageField.value.trim()) {
+                    messageField.value = 'Eldeco Camelot Enquiry';
+                }
+
+                const formData = new FormData(formElement);
+                const result = await submitToGoogleSheets(formData, 'modal');
+
+                if (result.success) {
+                    // Close modal
+                    const modalElement = document.getElementById('contactModal');
+                    if (modalElement) {
+                        const modal = bootstrap.Modal.getInstance(modalElement);
+                        if (modal) {
+                            modal.hide();
+                        }
+                    }
+                    // Store current URL in sessionStorage for redirect back
+                    sessionStorage.setItem('previousUrl', window.location.href);
+                    // Redirect to thank you page
+                    window.location.href = 'thankyou.html';
+                } else {
+                    alert('Error: ' + result.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {

@@ -1008,7 +1008,7 @@ h1, h2, h3, h4, h5, h6 {
       padding: 18px;
       text-align: center;
       color: #fff;
-      background: linear-gradient(45deg, #17693D, #0a4064);
+      background: #17693D;
       cursor: pointer;
       transition: 0.3s;
   }
@@ -1112,7 +1112,7 @@ h1, h2, h3, h4, h5, h6 {
   .section-label {
       display: inline-block;
       padding: 0.4rem 1rem;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       color: #fff;
       font-size: 0.75rem;
       font-weight: 600;
@@ -1168,7 +1168,7 @@ h1, h2, h3, h4, h5, h6 {
       top: 0;
       width: 4px;
       height: 100%;
-      background: linear-gradient(180deg, #17693D, #0a4064);
+      background: #17693D;
       transform: scaleY(0);
       transition: transform 0.3s ease;
   }
@@ -1199,7 +1199,7 @@ h1, h2, h3, h4, h5, h6 {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       border-radius: 50%;
       opacity: 0.15;
       transition: all 0.3s ease;
@@ -1270,7 +1270,7 @@ h1, h2, h3, h4, h5, h6 {
   .amenities-label-badge {
       display: inline-block;
       padding: 0.4rem 1rem;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       color: #fff;
       font-size: 0.75rem;
       font-weight: 600;
@@ -1556,7 +1556,7 @@ h1, h2, h3, h4, h5, h6 {
   .floorplan-section-label {
       display: inline-block;
       padding: 0.4rem 1rem;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       color: #fff;
       font-size: 0.75rem;
       font-weight: 600;
@@ -1590,7 +1590,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .floorplan-view-btn {
       padding: 12px 28px;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -1606,7 +1606,7 @@ h1, h2, h3, h4, h5, h6 {
   .floorplan-view-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(23, 105, 61, 0.4);
-      background: linear-gradient(135deg, #0a4064, #17693D);
+      background: #17693D;
   }
 
   .floorplan-visual-container {
@@ -1705,7 +1705,7 @@ h1, h2, h3, h4, h5, h6 {
   .location-section-label {
       display: inline-block;
       padding: 0.4rem 1rem;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       color: #fff;
       font-size: 0.75rem;
       font-weight: 600;
@@ -1761,7 +1761,7 @@ h1, h2, h3, h4, h5, h6 {
       top: 0;
       width: 4px;
       height: 100%;
-      background: linear-gradient(180deg, #17693D, #0a4064);
+      background: #17693D;
       transform: scaleY(0);
       transition: transform 0.3s ease;
   }
@@ -1913,7 +1913,7 @@ h1, h2, h3, h4, h5, h6 {
   .gallery-label-badge {
       display: inline-block;
       padding: 0.4rem 1rem;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       color: #fff;
       font-size: 0.75rem;
       font-weight: 600;
@@ -1990,7 +1990,7 @@ h1, h2, h3, h4, h5, h6 {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #17693D, #0a4064);
+      background: #17693D;
       color: #fff;
       position: absolute;
       top: 50%;
@@ -2014,7 +2014,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .gallery-nav-button:hover {
-      background: linear-gradient(135deg, #0a4064, #17693D);
+      background: #17693D;
       box-shadow: 0 8px 20px rgba(23, 105, 61, 0.4);
       transform: translateY(-50%) scale(1.1);
   }

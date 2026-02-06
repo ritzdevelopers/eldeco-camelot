@@ -83,11 +83,11 @@
             });
 
             // Custom Navigation
-            $('.gallery-prev').click(function () {
+            $('.gallery-nav-prev').click(function () {
                 gallery.trigger('prev.owl.carousel');
             });
 
-            $('.gallery-next').click(function () {
+            $('.gallery-nav-next').click(function () {
                 gallery.trigger('next.owl.carousel');
             });
         });

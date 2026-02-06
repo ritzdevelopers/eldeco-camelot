@@ -1,9 +1,9 @@
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: "Playfair Display", serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
 }
 
 .primary-bg {
@@ -415,28 +415,29 @@ h1, h2, h3, h4, h5 {
   position: relative;
   padding: 6rem 3rem 3rem 1rem;
   height: 97vh;
-  background-image: url("../img/eldeco-g-6.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-image: url('../img/eldeco-g-6.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.63);
+  z-index: 1;
 }
 .hero-wrapper{
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-/* Transparent overlay */
-#hero-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.63); 
-  z-index: 1;
 }
 
 /* Keep content above overlay */
@@ -450,34 +451,77 @@ h1, h2, h3, h4, h5 {
       padding: 40px 20px;
       width: 40%;
       height: 100%;
-      text-align: center;
-
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .launch-text {
-      text-transform: uppercase;
-      font-size: 18px;
-      letter-spacing: 1px;
-      color: #ffffff;
-      margin-bottom: 12px;
+    .hero-title-block {
+      max-width: 650px;
+      padding: 2rem 0;
     }
-
-
 
     /* Project name */
     .hero-main-title {
-      font-size: 35px;
+      font-size: 3.5rem;
       font-weight: 700;
       color: #fff;
-      margin: 0;
+      margin: 0 0 1.5rem 0;
+      line-height: 1.2;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      letter-spacing: -0.5px;
     }
 
-    .hero-subtitle {
-      font-size: 19px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 6px;
+    .hero-location-tag {
       color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.5rem 1rem;
+      background: rgba(23, 105, 61, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-location-tag i {
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .hero-description {
+      color: #fff;
+      font-size: 1.25rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+      font-weight: 400;
+    }
+
+    .hero-description br {
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .hero-cta-wrapper {
+      margin-top: 1.5rem;
+    }
+
+    .hero-cta-wrapper .cta-primary-btn {
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(23, 105, 61, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .hero-cta-wrapper .cta-primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(23, 105, 61, 0.4);
     }
 
     .price-text span{
@@ -756,6 +800,22 @@ h1, h2, h3, h4, h5 {
     width: 100%;
     height: 100%;
     border: 6px solid #fff;
+    transition: none !important;
+    transform: none !important;
+}
+
+.about-image-wrapper:hover img {
+    transform: none !important;
+    transition: none !important;
+}
+
+.about-image-wrapper {
+    transition: none !important;
+}
+
+.about-image-wrapper:hover {
+    transform: none !important;
+    transition: none !important;
 }
 
 
@@ -833,6 +893,54 @@ h1, h2, h3, h4, h5 {
       background-image: url("../img/line-bg.webp");
   }
 
+  /* Price Box Container */
+  .price-box-container {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.08);
+      background: #fff;
+  }
+
+  .price-boxes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid #E8E4E4;
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+  }
+
+  .price-box {
+      padding: 20px 15px;
+      text-align: center;
+      border-right: 1px solid #E8E4E4;
+      border-bottom: 1px solid #E8E4E4;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 180px;
+  }
+
+  .price-box:nth-child(2),
+  .price-box:nth-child(4) {
+      border-right: none;
+  }
+
+  .price-box:nth-child(3),
+  .price-box:nth-child(4) {
+      border-bottom: none;
+  }
+
+  .price-box-upper {
+      background-color: #F7F7F7;
+  }
+
+  .price-box-lower {
+      background-color: #ffffff;
+  }
+
   .price-card-modern {
       position: relative;
       border-radius: 6px;
@@ -844,38 +952,56 @@ h1, h2, h3, h4, h5 {
       background-color: rgb(240, 240, 238);
       padding: 35px;
       border-radius: 6px 6px 0 0;
-      text-align: left;
+      text-align: center;
       position: relative;
   }
 
-  .unit-type {
-      font-size: 32px;
-      margin: 0;
+  .price-box .unit-type {
+      font-size: 22px;
+      margin: 0 0 6px 0;
       font-weight: 600;
+      line-height: 1.2;
   }
 
-  .project-name-text {
-      margin-top: 5px;
-      font-size: 17px;
+  .price-box .project-name-text {
+      margin: 0 0 8px 0;
+      font-size: 13px;
       color: #555;
+      line-height: 1.2;
   }
 
-  .divider-line {
+  .price-box .divider-line {
       height: 1px;
-      width: 100%;
+      width: 50%;
       background: #dcdcdc;
-      margin: 25px 0;
+      margin: 6px auto 8px auto;
   }
 
-  .price-amount {
+  .price-box .price-amount {
       font-weight: 600;
-      font-size: 24px;
-      margin-bottom: 5px;
+      font-size: 18px;
+      margin: 0 0 6px 0;
+      line-height: 1.2;
   }
 
-  .unit-size {
-      font-size: 20px;
+  .price-box .unit-size {
+      font-size: 14px;
       color: #555;
+      margin: 0;
+      line-height: 1.2;
+  }
+
+  .price-box-footer {
+      padding: 18px;
+      text-align: center;
+      color: #fff;
+     background:  #17693D;
+      cursor: pointer;
+      transition: 0.3s;
+  }
+
+  .price-box-footer:hover {
+      opacity: 0.9;
   }
 
   .price-card-footer {
@@ -1186,7 +1312,7 @@ h1, h2, h3, h4, h5 {
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       border: 1px solid rgba(23, 105, 61, 0.1);
       height: 100%;
-      min-height: 480px;
+      min-height: 350px;
       display: flex;
       flex-direction: column;
   }
@@ -1225,15 +1351,19 @@ h1, h2, h3, h4, h5 {
       flex: 1;
       display: flex;
       flex-direction: column;
-      min-height: 260px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 120px;
   }
 
   .amenity-card-title {
       font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 0.8rem;
+      margin: 0;
       color: #222;
-      line-height: 1.3;
+      line-height: 1.4;
+      text-align: center;
   }
 
   .amenity-rating-stars {
@@ -1247,13 +1377,6 @@ h1, h2, h3, h4, h5 {
       font-size: 1rem;
   }
 
-  .amenity-card-description {
-      font-size: 0.95rem;
-      color: #666;
-      line-height: 1.7;
-      margin: 0;
-      flex: 1;
-  }
 
   #virtual-tour-section {
       position: relative;
@@ -1837,13 +1960,13 @@ h1, h2, h3, h4, h5 {
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      transition: all 0.4s ease;
+      transition: none;
       cursor: pointer;
   }
 
   .gallery-image-wrapper:hover {
-      box-shadow: 0 15px 40px rgba(23, 105, 61, 0.25);
-      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transform: none;
   }
 
   .gallery-img {
@@ -1851,52 +1974,15 @@ h1, h2, h3, h4, h5 {
       height: 480px;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
+      transition: none;
   }
 
   .gallery-image-wrapper:hover .gallery-img {
-      transform: scale(1.05);
+      transform: none;
   }
 
   .gallery-image-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, transparent 0%, rgba(23, 105, 61, 0.6) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 2;
-      cursor: pointer;
-  }
-
-  .gallery-image-wrapper:hover .gallery-image-overlay {
-      opacity: 1;
-  }
-
-  .gallery-image-overlay i {
-      font-size: 2.5rem;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      transition: all 0.3s ease;
-      pointer-events: none;
-  }
-
-  .gallery-image-overlay:hover i {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.1);
+      display: none;
   }
 
   /* Navigation Buttons */
@@ -2774,6 +2860,14 @@ h1, h2, h3, h4, h5 {
         clip-path: polygon(100% 0, 0 100%, 100% 100%);
     }
 
+    .price-boxes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-box {
+        padding: 25px;
+    }
+
     .price-card-modern {
         margin-top: 1.5rem;
     }
@@ -2855,7 +2949,7 @@ h1, h2, h3, h4, h5 {
     }
 
     .amenity-card-modern {
-        min-height: 450px;
+        min-height: 320px;
     }
 
     .amenity-image-wrapper {
@@ -2865,15 +2959,11 @@ h1, h2, h3, h4, h5 {
 
     .amenity-card-content {
         padding: 1.5rem;
-        min-height: 250px;
+        min-height: 100px;
     }
 
     .amenity-card-title {
         font-size: 1.2rem;
-    }
-
-    .amenity-card-description {
-        font-size: 0.9rem;
     }
 
     /* Gallery Section Mobile */
@@ -3136,12 +3226,32 @@ h1, h2, h3, h4, h5 {
  .hero-content-area{
   width: 100%;
   padding: 12px;
+  text-align: center;
  }
  .hero-wrapper{
   flex-direction: column;
  }
- .apartment-badge{
-  width: 88%;
+ .hero-title-block {
+  max-width: 100%;
+  padding: 1.5rem 0;
+  text-align: center;
+ }
+ .hero-main-title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+ }
+ .hero-location-tag {
+  font-size: 0.95rem;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 1.5rem;
+ }
+ .hero-description {
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+ }
+ .hero-cta-wrapper .cta-primary-btn {
+  padding: 12px 28px;
+  font-size: 1rem;
  }
  .features-image-wrapper{
      min-height: 400px;
@@ -3178,7 +3288,7 @@ h1, h2, h3, h4, h5 {
     }
 
     .amenity-card-modern {
-        min-height: 420px;
+        min-height: 300px;
     }
 
     .amenity-image-wrapper {
@@ -3188,24 +3298,12 @@ h1, h2, h3, h4, h5 {
 
     .amenity-card-content {
         padding: 1.3rem;
-        min-height: 240px;
+        min-height: 90px;
     }
 
     .amenity-card-title {
         font-size: 1.1rem;
-        margin-bottom: 0.6rem;
-    }
-
-    .amenity-rating-stars {
-        margin-bottom: 0.8rem;
-    }
-
-    .amenity-rating-stars i {
-        font-size: 0.9rem;
-    }
-
-    .amenity-card-description {
-        font-size: 0.85rem;
+        margin: 0;
     }
 
     /* Gallery Section Small Mobile */
